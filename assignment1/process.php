@@ -13,7 +13,16 @@ switch($_GET["action"]) {
             $salt = '$a$Gfyew@!hjerifdggh#$uyTT$';
 			if (isset($user, $pass) && (crypt($user . $pass, $salt) == crypt("loch123", $salt))) {
                 $_SESSION["user"] = $_POST["user"];
-				setcookie("jsession", $_POST["user"], time() + (56400), "/");
+				
+				$sessionid = generateRandomString();
+				$csrftoken = generateRandomString();
+				setcookie("jsession", $sessionid, time() + (56400), "/");
+				
+				$myfile = fopen("token.txt", "w") or die("Unable to open file!");
+				$txt = $sessionid."-".$csrftoken;
+				fwrite($myfile, $txt);
+				fclose($myfile);
+				
 				header("Location: gettokken.php");
             }
         }
@@ -21,7 +30,6 @@ switch($_GET["action"]) {
  
     case "logout":
 		setcookie("jsession", "", time() - (86400),"/");
-		setcookie("csrf", "", time() - (86400),"/");
         $_SESSION = array();
         session_destroy();
 		header("Location: login.php");
@@ -29,16 +37,33 @@ switch($_GET["action"]) {
     
 	
 	case "csrf":
-		echo ('dsa');
-		setcookie("csrf",generateRandomString(), time() + (56400), "/");
+
+		$myfile = fopen("token.txt", "r") or die("Unable to open file!");
+		list ($jession , $csrf) = explode ("-" , fread($myfile,filesize("token.txt")));
+		fclose($myfile);
+		if($jession == $_POST["sessionid"])
+		{
+			echo $csrf;
+		}
         break;
 		
 	case "check":
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			if(($_POST["csrftoken"] == $_COOKIE['csrf']) && ($_POST["sessiontoken"] == $_COOKIE['jsession']))
-			$csrvalue = ($_POST["csrftoken"]);
-			$sessionvalue = ($_POST["sessiontoken"]);
-			header("Location: sucess.php?action=$sessionvalue");
+			
+			$myfile = fopen("token.txt", "r") or die("Unable to open file!");
+			list ($jession , $csrf) = explode ("-" , fread($myfile,filesize("token.txt")));
+			fclose($myfile);
+			if($jession == $_COOKIE['jsession'])
+			{
+				if(($_POST["csrftoken"] == $csrf."ffsd"))
+				{
+					header("Location: sucess.php");
+				}
+				else
+				{
+					header("Location: unsucess.php");
+				}
+			}
 		}
         break;
 }
