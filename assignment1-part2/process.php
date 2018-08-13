@@ -17,52 +17,36 @@ switch($_GET["action"]) {
 				$sessionid = generateRandomString();
 				$csrftoken = generateRandomString();
 				setcookie("jsession", $sessionid, time() + (56400), "/");
-				
-				$myfile = fopen("token.txt", "w") or die("Unable to open file!");
-				$txt = $sessionid."-".$csrftoken;
-				fwrite($myfile, $txt);
-				fclose($myfile);
-				
+				setcookie("csrftokenid", $csrftoken, time() + (56400), "/");
 				header("Location: gettokken.php");
             }
         }
         break;
+		
+	case "csrf":
+		echo $_COOKIE['csrftokenid'];
+        break;
  
     case "logout":
 		setcookie("jsession", "", time() - (86400),"/");
+		setcookie("csrftokenid", "", time() - (86400),"/");
         $_SESSION = array();
         session_destroy();
 		header("Location: login.php");
         break;
     
 	
-	case "csrf":
-
-		$myfile = fopen("token.txt", "r") or die("Unable to open file!");
-		list ($jession , $csrf) = explode ("-" , fread($myfile,filesize("token.txt")));
-		fclose($myfile);
-		if($jession == $_POST["sessionid"])
-		{
-			echo $csrf;
-		}
-        break;
 		
 	case "check":
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			
-			$myfile = fopen("token.txt", "r") or die("Unable to open file!");
-			list ($jession , $csrf) = explode ("-" , fread($myfile,filesize("token.txt")));
-			fclose($myfile);
-			if($jession == $_COOKIE['jsession'])
+			if(($_POST["csrftoken"] == $_COOKIE['csrftokenid']))
 			{
-				if(($_POST["csrftoken"] == $csrf))
-				{
-					header("Location: sucess.php");
-				}
-				else
-				{
-					header("Location: unsucess.php");
-				}
+				header("Location: sucess.php");
+			}
+			else
+			{
+				header("Location: unsucess.php");
 			}
 		}
         break;
