@@ -1,0 +1,26 @@
+App ID
+2082020328498756
+	
+App Secret
+c56d55e5140121c3cd94fe0811ab6b43
+
+encoded redirect url 
+https%3A%2F%2Flocalhost%2Fmyweb
+
+sample request
+https://www.facebook.com/dialog/oauth?response_type=code&client_id=2082020328498756&redirect_uri=https%3A%2F%2Flocalhost%2Fmyweb&scope=public_profile%20user_posts%20user_friends%20user_photos
+
+response
+https://localhost/myweb?code=AQAid-hjzP_ZLMhCbkNXLkhzlEJsPfjSODzP-47WIPjGD4fcQSRygpCRX_Id7WignRY9Awo247Cec2ASXeRAIVpmsXddo8xAtmr7_yiHbj6_GfzieSeikiy5I1X7C_EJ7uIMMGjoAIhmn4aouAASQQaaVExzJ1LCaenZ8HHkCjaVPDhHf0HLPXi02aDWdOFlmcWuoCziXa6bIK33mH9y4zvNQUJ2Zs-9utjdc8BCLvCwI7XlZzho_sE-lNG2HxlpRlKckQW7sjRVbvRzgh4SaQi2l1PdZQXqXyWJBK49SfkgPvSs3P3qA_0Y0gyRBChxKE2S8gQBFQeK8wv1YQNkdH9h#_=_
+
+convert secret and id to base64
+2082020328498756:c56d55e5140121c3cd94fe0811ab6b43
+
+Basic MjA4MjAyMDMyODQ5ODc1NjpjNTZkNTVlNTE0MDEyMWMzY2Q5NGZlMDgxMWFiNmI0Mw==
+
+
+repsonse
+{"access_token":"EAAdlliIYZAkQBAHcuuCEoMogLgzySrJJD3oMbZApyQzdvODX4I4qGWzguOE2DRyoq4zpbJdTLUctTlHBKu22lAaZAASjNSuGHiX9gCPCkbiK1YxrljwZCRceIr4mE6LQItI3B1YYESWWiHDXWZCzveApmdfPIwIEl1SuAzbKSzQZDZD","token_type":"bearer","expires_in":5183968}
+
+data retireve done
+https://graph.facebook.com/v3.1/me?access_token=EAAdlliIYZAkQBAHcuuCEoMogLgzySrJJD3oMbZApyQzdvODX4I4qGWzguOE2DRyoq4zpbJdTLUctTlHBKu22lAaZAASjNSuGHiX9gCPCkbiK1YxrljwZCRceIr4mE6LQItI3B1YYESWWiHDXWZCzveApmdfPIwIEl1SuAzbKSzQZDZD&debug=all&fields=id,name,middle_name,picture
