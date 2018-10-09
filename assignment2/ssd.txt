@@ -1,0 +1,15 @@
+client id - 502184323359-o0a2086o2igadevkekqac7m3gq5l6j71.apps.googleusercontent.com
+
+secret - q2Tsd8kabX0UHrAh1f8eto5Z
+
+
+https://accounts.google.com/o/oauth2/v2/auth?client_id=502184323359-o0a2086o2igadevkekqac7m3gq5l6j71.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/gmail.send&redirect_uri=http://localhost&access_type=offline
+
+code - 4/cwBlWB0mkG-MzVKG-3nvO2C8aJjk-gCrfBJfw0ihOpr7A_1yf6lxbRdOxVwmM8xnxxxEWZ77QpYcOI5Dbt5gWDk&scope=https://www.googleapis.com/auth/gmail.send
+
+code=4/cwBlWB0mkG-MzVKG-3nvO2C8aJjk-gCrfBJfw0ihOpr7A_1yf6lxbRdOxVwmM8xnxxxEWZ77QpYcOI5Dbt5gWDk&scope=https://www.googleapis.com/auth/gmail.send&client_id=502184323359-o0a2086o2igadevkekqac7m3gq5l6j71.apps.googleusercontent.com&client_secret=q2Tsd8kabX0UHrAh1f8eto5Z&grant_type=authorization_code&redirect_uri=http://localhost
+
+
+https://www.googleapis.com/plus/v1/people/me?access_token=ya29.GlsxBq4C-jWyGRAR1RsUg5d-zqzl1cgNmHyxjWP-J3t4ClGdKqYvV3y5w4w_lKNNDi5QgxLVEvJXhOTfhrLSVm-deu185Lx1xRXXFDj-OAp2BJmPuqrH3EG2MhRA
+
+https://www.googleapis.com/drive/v2/files?access_token=ya29.GlsxBuyoH3_wt3y8ayryc99aX6oWmmZSEzYHjquWBjh3IHr6DPnoOlrqbzNtxizJjXtbeAX5CkNnldLFXxY_4atI2hSeZoa7bJOfulOfgpZxgyDHM3ucNE7Bnrdq
