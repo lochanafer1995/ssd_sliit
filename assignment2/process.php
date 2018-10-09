@@ -1,6 +1,7 @@
 <link href="bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="jquery-1.11.1.min.js"></script>
 <script src="bootstrap.min.js"></script>
+<script src="config.js"></script>
 <link href="style.css" rel="stylesheet" id="bootstrap-css">
 <link href="font-awesome.min.css" rel="stylesheet">
 
@@ -23,8 +24,8 @@ if (isset($token))
 					
 						'code': '<?php echo $_GET["code"]; ?>',
 						'scope': 'https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/plus.me',
-						'client_id': '502184323359-o0a2086o2igadevkekqac7m3gq5l6j71.apps.googleusercontent.com',
-						'client_secret': 'q2Tsd8kabX0UHrAh1f8eto5Z',
+						'client_id': options.client_id,
+						'client_secret': options.client_secret,
 						'grant_type':'authorization_code',
 						'redirect_uri':'http://localhost/ssd_sliit/assignment2/process.php'
 						
