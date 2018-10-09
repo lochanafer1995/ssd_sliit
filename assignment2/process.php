@@ -72,7 +72,7 @@ if (isset($token))
 							var list = "";
 							for (var i = 0; i < data.items.length; i++) {
 								console.log(data.items[i].title);
-								list +="<li><a onclick=downloadfile('"+data.items[i].downloadUrl+"','"+value+"')>"+data.items[i].title+"</a></li>";
+								list +="<li><a onclick=downloadfile('"+data.items[i].downloadUrl+"','"+value+"','"+data.items[i].title+"')>"+data.items[i].title+"</a></li>";
 							}
 							$("#gamelist").append(list);
 					},
@@ -82,21 +82,29 @@ if (isset($token))
 						  }
 				});
 			}
-			function downloadfile(urlval,access){
-				var head = 'Authorization : Bearer '; 
-				var res = head.concat(access);
+			function downloadfile(urlval,access,file){
+				var head1 = 'Authorization : Bearer '; 
+				var res = head1.concat(access);
 				console.log(res);
 				$.ajax({
 					url: urlval,
 					type: 'GET',
-					header : res,
+					responseType: 'blob',
 					success: function(data){
-							console.log(data);
+							//console.log(data1);
+							  const url = window.URL.createObjectURL(new Blob([data]));
+							  const link = document.createElement('a');
+							  link.href = url;
+							  link.setAttribute('download', file);
+							  document.body.appendChild(link);
+							  link.click();
+							 
 					},
 					error: function (xhr, ajaxOptions, thrownError) {
 							var errorMsg = 'Ajax request failed: ' + xhr.responseText;
 							//$('#content').html(errorMsg);
-						  }
+						  },
+					beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + access ); }
 				});
 				
 			}
